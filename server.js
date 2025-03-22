@@ -41,6 +41,18 @@ app.post('/shorten', (req, res) => {
     });
 });
 
+// Redirect short URL
+app.get('/:shortCode', (req, res) => {
+    const { shortCode } = req.params;
+    const originalUrl = urlDatabase[shortCode];
+    
+    if (!originalUrl) {
+        return res.status(404).send('URL not found');
+    }
+    
+    res.redirect(originalUrl);
+});
+
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
