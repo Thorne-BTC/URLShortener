@@ -13,7 +13,7 @@ app.use(express.static('public'));
 const urlDatabase = {};
 
 app.get('/', (req, res) => {
-    res.send('URL Shortener Service');
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // Create short URL
